@@ -38,8 +38,8 @@
             <td>Идентификатор</td>
             <td>Имя</td>
             <td>Почта</td>
-            <td>Роль</td>
-            <td>Информация</td>
+
+
         </tr>
         <#list userList as user>
             <tr>
@@ -48,7 +48,7 @@
                     ${user.name}
                 </td>
                 <td>${user.email}</td>
-                <td>${user.role.name}</td>
+
                 <td>
                     <a href="/user/edit/${user.id}">
                         <button>Редактировать</button>

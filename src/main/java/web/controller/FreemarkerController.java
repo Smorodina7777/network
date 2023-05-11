@@ -25,7 +25,7 @@ public class FreemarkerController {
             return "login";
         }
         model.addAttribute("user", user);
-        return "index";
+        return "authorization";
     }
 
     @PostMapping(value = "/user")
@@ -36,7 +36,7 @@ public class FreemarkerController {
             User userEntity = userService.getByName(user.getName());
             request.getSession().setAttribute("user", userEntity);
             model.addAttribute("user", userEntity);
-            return "index";
+            return "authorization";
         }
         System.out.println("Не удалось авторизоваться");
         return "login";
@@ -49,7 +49,7 @@ public class FreemarkerController {
             return "login";
         }
         model.addAttribute("userList", userService.listAll());
-        return "userInfo";
+        return "index";
     }
 
     @PostMapping(value = "/user/add")

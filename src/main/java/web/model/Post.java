@@ -6,26 +6,28 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "products")
+@Table(name = "posts")
 @Data
-public class Product {
+public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String name;
-  private BigDecimal price;
+  private String postName;
+  private String text;
+  private LocalDate pubDate;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "category_id")
-  private Category category;
+  @JoinColumn(name = "user_id")
+  private User user;
 
-  public Product(String name, BigDecimal price, Category category) {
-    this.name = name;
-    this.price = price;
-    this.category = category;
+  public Post(String postName, String text, User user) {
+    this.postName = postName;
+    this.text = text;
+    this.user = user;
   }
 }

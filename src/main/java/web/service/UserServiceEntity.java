@@ -1,11 +1,12 @@
 package web.service;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 import web.repository.UserRepository;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -58,5 +59,10 @@ public class UserServiceEntity {
 
   public void deleteUser(User user) {
     repo.delete(user);
+  }
+@Transactional
+  public List<User> findAll() {
+    List<User> all = repo.listAll();
+    return all;
   }
 }

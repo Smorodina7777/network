@@ -10,59 +10,60 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import web.model.Category;
-import web.model.Product;
-import web.repository.ProductCreateService;
-import web.service.CategoryService;
-import web.service.ProductService;
+import web.model.Post;
+import web.model.User;
+import web.repository.PostCreateService;
+import web.service.PostService;
+import web.service.UserServiceEntity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
 @RequestMapping(value = "/product")
 @RequiredArgsConstructor
-public class ProductController {
+public class PostController {
 
-  private final ProductCreateService productCreateService;
-  private final ProductService productService;
-  private final CategoryService categoryService;
+  private final PostCreateService postCreateService;
+  private final PostService postService;
+  private final UserServiceEntity userService;
 
-  @GetMapping(value = "/createCategory")
-  public ResponseEntity<Void> createCategory() {
-    productCreateService.saveThemes();
-    return ResponseEntity.ok().build();
-  }
+//  @GetMapping(value = "/createCategory")
+//  public ResponseEntity<Void> createCategory() {
+//    postCreateService.saveThemes();
+//    return ResponseEntity.ok().build();
+//  }
 
-  @GetMapping(value = "/createProduct")
+  @GetMapping(value = "/createPost")
   public ResponseEntity<String> createProduct() {
-    Product randomProductAndTheme = productCreateService.getRandomProductAndTheme();
-    return ResponseEntity.ok(randomProductAndTheme.toString());
+    Post randomPostAndTheme = postCreateService.getRandomPostAndTheme();
+    return ResponseEntity.ok(randomPostAndTheme.toString());
   }
 
-  @GetMapping(value = "/findProductByCategory")
-  public ResponseEntity<String> findProductByCategory(@RequestParam String category) {
-    Pageable pageable = PageRequest.of(0,4, Sort.by("price").ascending());
-    return ResponseEntity.ok(productService.findByCategoryName(category,pageable).toString());
+  @GetMapping(value = "/findPostByUser")
+  public ResponseEntity<String> findPostByUser(@RequestParam User user) {
+    Pageable pageable = PageRequest.of(0,4, Sort.by("pubDate").ascending());
+    return ResponseEntity.ok(postService.findByUserAndPostName(user, pageable.toString()).toString());
   }
 
-  @GetMapping(value = "/findProductByPrice")
-  public ResponseEntity<String> findProductByPrice(@RequestParam BigDecimal price) {
-    Pageable pageable = PageRequest.of(0,4, Sort.by("price").ascending());
-    Page<Product> result = productService.findByPrice(price, pageable);
-    System.out.println(result.getNumber());
-    System.out.println(result.getTotalElements());
-    System.out.println(result.getSize());
-    System.out.println(result.getTotalPages());
-    return ResponseEntity.ok(result.toString());
-  }
+//  @GetMapping(value = "/findPostByDate")
+//  public ResponseEntity<String> findPostByDate(@RequestParam LocalDate pubDate) {
+//    Pageable pageable = PageRequest.of(0,4, Sort.by("pubDate").ascending());
+//    Page<Post> result = postService.findByPubDate(pubDate, pageable);
+//    System.out.println(result.getNumber());
+//    System.out.println(result.getTotalElements());
+//    System.out.println(result.getSize());
+//    System.out.println(result.getTotalPages());
+//    return ResponseEntity.ok(result.toString());
+//  }
 
-  @GetMapping(value = "/findAllProducts")
-  public ResponseEntity<String> findAllCategories() {
-    List<Category> all = categoryService.findAll();
-    for (Category category : all) {
-      for (Product product : category.getProducts()) {
-        System.out.println(product);
+  @GetMapping(value = "/findAllPosts")
+  public ResponseEntity<String> findAllUsers() {
+    List<User> all = userService.findAll();
+    for (User user : all) {
+      for (Post post : user.getPosts()) {
+        System.out.println(post);
       }
     }
     return ResponseEntity.ok(all.toString());

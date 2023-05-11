@@ -1,47 +1,52 @@
 package web.service;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web.model.Product;
-import web.repository.ProductRepository;
+import web.model.Post;
+
+import web.model.User;
+import web.repository.PostRepository;
+
+
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
-public class ProductService {
-  private final ProductRepository productRepository;
+public class PostService {
+  private final PostRepository postRepository;
 
   @Autowired
-  public ProductService(ProductRepository productRepository) {
-    this.productRepository = productRepository;
+  public PostService(PostRepository postRepository) {
+    this.postRepository = postRepository;
   }
 
-  public Product save(Product product) {
-    return productRepository.save(product);
+  public Post save(Post post) {
+    return postRepository.save(post);
   }
 
-  public Optional<Product> findById(Long id) {
-    return productRepository.findById(id);
+  public Optional<Post> findById(Long id) {
+    return postRepository.findById(id);
   }
 
-  public List<Product> findAll() {
-    return productRepository.findAll();
+  public List<Post> findAll() {
+    return postRepository.findAll();
   }
 
-  public void delete(Product product) {
-    productRepository.delete(product);
+  public void delete(Post post) {
+    postRepository.delete(post);
   }
 
-  public List<Product> findByCategoryName(String category, Pageable pageable) {
-    return productRepository.findByCategoryName(category, pageable);
+  public List<Post> findByUserAndPostName(User user, String postName) {
+    return postRepository.findByUserAndPostName(user, postName);
   }
 
-  public Page<Product> findByPrice(BigDecimal price, Pageable pageable) {
-    return productRepository.findByPriceGreaterThan(price, pageable);
-  }
+//  public Page<Post> findByPubDate(LocalDate pubDate, Pageable pageable) {
+//    return postRepository.findByPubDate(pubDate);
+//  }
 }

@@ -22,7 +22,8 @@ public class User {
   private String password;
   private String email;
 
-  @OneToMany(mappedBy = "user")
+  @OneToMany
+  @JoinColumn(name = "user_id")
   @ToString.Exclude
   private List<Post> posts;
 

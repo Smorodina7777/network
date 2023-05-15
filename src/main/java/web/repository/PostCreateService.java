@@ -31,15 +31,15 @@ public class PostCreateService {
           {"Беговая дорожка NordicTrack", "Велосипед Merida", "Боксерские перчатки Everlast"}
   };
 
-  public Post getRandomPostAndTheme() {
-    Random random = new Random();
-    int themeIndex = random.nextInt(themes.length);
-    int postIndex = random.nextInt(posts[themeIndex].length);
-    User user = users.get(themeIndex);
-    String post = posts[themeIndex][postIndex];
-    return postService.save(new Post(post, LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), user));
-
-  }
+//  public Post getRandomPostAndTheme() {
+//    Random random = new Random();
+//    int themeIndex = random.nextInt(themes.length);
+//    int postIndex = random.nextInt(posts[themeIndex].length);
+//    User user = users.get(themeIndex);
+//    String post = posts[themeIndex][postIndex];
+//    return postService.save(new Post(post, LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), user));
+//
+//  }
 
 //  public void saveThemes() {
 //    for (String theme : themes) {
@@ -49,4 +49,5 @@ public class PostCreateService {
 //      System.out.println("Создана категория:" + category);
 //    }
 //  }
+
 }

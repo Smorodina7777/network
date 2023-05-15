@@ -37,6 +37,9 @@ public class PostService {
   public List<Post> findAll() {
     return postRepository.findAll();
   }
+  public List<Post> findAllByUser_id(Long id) {
+    return postRepository.findAllByUser_id(id);
+  }
 
   public void delete(Post post) {
     postRepository.delete(post);

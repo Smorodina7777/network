@@ -65,4 +65,7 @@ public class UserServiceEntity {
     List<User> all = repo.listAll();
     return all;
   }
+  public void deleteUserById(Long id) {
+    repo.deleteById(id);
+  }
 }

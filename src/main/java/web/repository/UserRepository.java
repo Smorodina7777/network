@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
   User findUserByEmail(String email);
+  void deleteById(Long id);
 
   User findUserByNameAndEmail(String name, String email);
 

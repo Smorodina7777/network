@@ -22,12 +22,12 @@ public class Post {
   private LocalDate pubDate;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "user_id")
   private User user;
 
-  public Post(String postName, String text, User user) {
+  public Post(String postName, String text, LocalDate pubDate, User user) {
     this.postName = postName;
     this.text = text;
+    this.pubDate = pubDate;
     this.user = user;
   }
 }

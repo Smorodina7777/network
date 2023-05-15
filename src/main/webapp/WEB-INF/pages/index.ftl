@@ -53,13 +53,17 @@
                     <a href="/user/edit/${user.id}">
                         <button>Редактировать</button>
                     </a>
-                    <a href="/user/delete/${user.id}">
+                    <a href="/user/${user.id}">
                         <button>Удалить</button>
                     </a>
                 </td>
             </tr>
         </#list>
     </table>
+    <br><br>
+    <a href="/user/new">
+        <button>Добавить</button>
+    </a>
 </div>
 </body>
 </html>

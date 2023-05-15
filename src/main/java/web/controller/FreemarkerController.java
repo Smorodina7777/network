@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserServiceEntity;
 
@@ -58,12 +60,30 @@ public class FreemarkerController {
         return "redirect:/user/list";
     }
 
-
-    @PostMapping(value = "/user/delete")
-    public String deleteUser(HttpServletRequest request, User user) {
+    @GetMapping(value = "/user/{id}")
+    public String deleteUser(@PathVariable("id") Long id, Model model) {
+        User user = userService.getById(id);
         userService.deleteUser(user);
         return "redirect:/user/list";
     }
 
+    @GetMapping(value = "/user/new")
+    public String newUser(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        return "newUser";
+    }
+@GetMapping(value = "/user/edit/{id}")
+public ModelAndView edit(@PathVariable("id") Long id) {
+    User user = userService.getById(id);
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.setViewName("edit");
+    modelAndView.addObject("editUser", user);
+    return modelAndView;
+}
+    @PostMapping(value = "/user/edit")
+    public String editUser(HttpServletRequest request, User user) {
+        userService.addUser(user);
+        return "redirect:/user/list";
+    }
 
 }

@@ -16,4 +16,6 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long> {
   List<Post> findByUserAndPostName(User user, String postName);
 //  Page<Post> findByPubDate (LocalDate pubDate);
+  List<Post> findAllByUser_id(Long id);
+
 }

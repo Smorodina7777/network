@@ -3,6 +3,7 @@ package web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import web.model.User;
 import web.service.UserServiceEntity;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -40,4 +43,5 @@ public class UserController {
     public ResponseEntity<String> getAllUserContainsName(@PathVariable("name") String name) {
         return ResponseEntity.ok(userService.findAllByNameContaining(name).toString());
     }
+
 }

@@ -21,6 +21,9 @@ public class UserServiceEntity {
   public User getById(Long id) {
     return repo.findById(id).get();
   }
+  public User getUserById(Long id) {
+    return repo.getUserById(id);
+  }
 
   public User saveUser(User user) {
     return repo.save(user);
@@ -31,18 +34,6 @@ public class UserServiceEntity {
       throw new RuntimeException("Не удалось найти пользовтаеля с id:" + user.getId());
     }
     repo.save(user);
-  }
-
-  public User findByEmail(String email) {
-    return repo.findUserByEmail(email);
-  }
-
-  public User findUserByNameAndEmail(String name, String email) {
-    return repo.findUserByNameAndEmail(name, email);
-  }
-
-  public List<User> findAllByNameContaining(String name) {
-    return repo.findAllByNameContaining(name);
   }
 
   public boolean existUser(String name, String password) {

@@ -10,14 +10,9 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
-  User findUserByEmail(String email);
   void deleteById(Long id);
 
-  User findUserByNameAndEmail(String name, String email);
-
-  List<User> findAllByNameContaining(String name);
-
-
+User getUserById(Long id);
 
   boolean existsUserByNameAndPassword(String name, String password);
 

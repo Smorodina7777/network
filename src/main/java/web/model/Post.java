@@ -5,8 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+
+
 import java.time.LocalDate;
+
 
 @Entity
 @AllArgsConstructor
@@ -24,10 +26,10 @@ public class Post {
   @ManyToOne(fetch = FetchType.EAGER)
   private User user;
 
-  public Post(String postName, String text, LocalDate pubDate, User user) {
-    this.postName = postName;
-    this.text = text;
-    this.pubDate = pubDate;
-    this.user = user;
-  }
+//  public Post(String postName, String text, LocalDate pubDate, User user) {
+//    this.postName = postName;
+//    this.text = text;
+//    this.pubDate = pubDate;
+//    this.user = user;
+//  }
 }

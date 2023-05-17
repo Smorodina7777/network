@@ -20,8 +20,7 @@
         <br><br>
 
             <input style="height: 200px; width: 70%" placeholder="Текст" type="text" name="text" id="text">
-        <br><br>
-        <input type=hidden" name="user_id" value="${user.id}">
+
         <input type="submit" value="Сохранить">
     </form>
 </div>

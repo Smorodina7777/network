@@ -22,9 +22,9 @@ public class User {
   private String password;
   private String email;
 
-  @OneToMany
+  @OneToMany(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")
-  @ToString.Exclude
+
   private List<Post> posts;
 
 }

@@ -3,6 +3,7 @@ package web.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -24,6 +25,7 @@ public class Post {
   private LocalDate pubDate;
 
   @ManyToOne(fetch = FetchType.EAGER)
+  @ToString.Exclude
   private User user;
 
 //  public Post(String postName, String text, LocalDate pubDate, User user) {
